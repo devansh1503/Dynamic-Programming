@@ -19,3 +19,30 @@ public class gridTravel {
         System.out.println(res);
     }
 }
+
+Tabulation:
+import java.util.*;
+public class grid_tab {
+    public static int grid(int i, int j){
+        int[][]arr = new int[i+1][j+1];
+        for(int[]ar : arr){
+            Arrays.fill(ar,0);
+        }
+        arr[1][1] = 1;
+        for(int x=0; x<=i; x++){
+            for(int y=0; y<=j; y++){
+                if(x+1<=i){
+                    arr[x+1][y] += arr[x][y];
+                }
+                if(y+1<=j){
+                    arr[x][y+1] += arr[x][y];
+                }
+            }
+        }
+
+        return arr[i][j];
+    }
+    public static void main(String[]args){
+        System.out.println(grid(3,3));
+    }
+}
