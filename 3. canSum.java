@@ -18,3 +18,26 @@ public class canSum {
         System.out.println(cansum(7, arr,memo));
     }
 }
+
+Tabulation:
+import java.util.*;
+public class canSum_tab {
+    public static boolean canSum(int s, int[]arr){
+        boolean[]tab = new boolean[s+1];
+        Arrays.fill(tab,false);
+        tab[0] = true;
+        for(int i=0; i<=s; i++){
+            if(tab[i] == false) continue;
+            for(int n : arr){
+                if(i+n<=s){
+                    tab[i+n] = true;
+                }
+            }
+        }
+        return tab[s];
+    }
+    public static void main(String[]args){
+        int[]arr = {5,3,4};
+        System.out.println(canSum(7,arr));
+    }
+}
