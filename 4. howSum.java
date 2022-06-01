@@ -44,3 +44,33 @@ public class howSum_optimized {
         System.out.println(howSum(7,arr));
     }
 }
+
+Tabulation:-
+import java.util.*;
+public class howSum_tab {
+    public static List<Integer> howSum(int s, int[]arr){
+        HashMap<Integer, List<Integer>> tab = new HashMap<>();
+        for(int i=0; i<=s; i++){
+            tab.put(i,null);
+        }
+        tab.put(0,new LinkedList<>());
+        for(int i=0; i<=s; i++){
+            if(tab.get(i) == null) continue;
+            System.out.println(tab);
+            for(int a : arr){
+                if(i+a>s) continue;
+                List<Integer>ls = new LinkedList<>();
+                ls.addAll(tab.get(i));
+                ls.add(a);
+                tab.put((i+a),ls);
+            }
+        }
+
+        return tab.get(s);
+
+    }
+    public static void main(String[]args){
+        int[]arr = {5,3,2,2};
+        System.out.println(howSum(7,arr));
+    }
+}
