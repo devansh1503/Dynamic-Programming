@@ -23,3 +23,30 @@ public class countConst {
         System.out.println(countconst("abcdef",arr));
     }
 }
+
+Tabulation:-
+
+import java.util.*;
+public class countConst_tab {
+    public static int canConst(String s, String[] arr) {
+        int[] tab = new int[s.length() + 1];
+        Arrays.fill(tab,0);
+        tab[0] = 1;
+        int res = 0;
+        for (int i = 0; i < tab.length; i++) {
+                for (String a : arr) {
+                    int n = a.length();
+                    if(i+n>s.length()) continue;
+                    if (s.substring(i, i + n).equals(a)) {
+                        tab[i + n] += tab[i];
+                    }
+                }
+
+        }
+        return tab[s.length()];
+    }
+    public static void main(String[]args){
+        String[]arr = {"ab","abc","cd","def","abcd","ef"};
+        System.out.println(canConst("abcdef",arr));
+    }
+}
