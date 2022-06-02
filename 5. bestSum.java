@@ -53,3 +53,42 @@ public class bestSum_optimized {
         System.out.println(bestSum(7,arr));
     }
 }
+
+Tabulation:-
+import java.util.*;
+public class bestSum_tab {
+    public static List<Integer> howSum(int s, int[]arr){
+        HashMap<Integer, List<Integer>> tab = new HashMap<>();
+        for(int i=0; i<=s; i++){
+            tab.put(i,null);
+        }
+        List<Integer> res = new LinkedList<>();
+        int min = Integer.MAX_VALUE;
+        tab.put(0,new LinkedList<>());
+        for(int i=0; i<=s; i++){
+            if(tab.get(i) == null) continue;
+            System.out.println(tab);
+            for(int a : arr){
+                if(i+a>s) continue;
+                List<Integer>ls = new LinkedList<>();
+                ls.addAll(tab.get(i));
+                ls.add(a);
+                tab.put((i+a),ls);
+                if(i+a == s && tab.get(i+a)!=null){
+                    if(tab.get(i+a).size()<min) {
+                        res = tab.get(i + a);
+                        System.out.println(res);
+                        min = tab.get(i+a).size();
+                    }
+                }
+            }
+        }
+
+        return res;
+
+    }
+    public static void main(String[]args){
+        int[]arr = {5,3,2,2};
+        System.out.println(howSum(7,arr));
+    }
+}
